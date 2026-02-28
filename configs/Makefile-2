@@ -1,0 +1,70 @@
+# ======== Some Syntaxes ========
+# target: dependency
+# <Tab>rule
+#
+# $@ : target file name
+# $< : first necessary file name
+# $^ : all necessary file names
+# $* : main name of target file
+# 
+# ======== Variables ========
+#
+# Compiler for C
+CC = gcc
+# Compiler for C++
+CXX = g++
+# Compiler options for C
+CFLAGS = -Wall -g -Iinclude -MMD -MP
+# Compiler options for C++
+CXXFLAGS = -Wall -g -Iinclude -MMD -MP
+# Executable files (target)
+TARGET = bin/main
+
+# Source files directory
+SRC_DIR = src
+# Object files directory
+OBJ_DIR = obj
+# Header files directory
+INC_DIR = include
+
+# Source files path
+SRCS = $(wildcard $(SRC_DIR)/*.c)
+# Object files path
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+# Dependency files path
+DEPS = $(OBJS:.o=.d)
+
+# ======== Rules ========
+#
+# Default target
+all: $(TARGET)
+
+# Linking
+$(TARGET): $(OBJS) | bin
+	$(CC) $(OBJS) -o $@
+
+# Compiling
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Auto create directory
+$(OBJ_DIR) bin:
+	mkdir -p $@
+
+# Include dependency files
+-include $(DEPS)
+
+# Clean
+clean:
+	rm -rf $(OBJ_DIR) bin
+
+# Format
+format:
+	clang-format -style=file -i $(SRC_DIR)/*.c $(INC_DIR)/*.h
+
+# Run
+run:
+	./$(TARGET)
+
+# Phony rules
+.PHONY: all clean format run

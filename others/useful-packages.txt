@@ -1,0 +1,41 @@
+# Some Useful Packages for Arch Linux
+
+# Installation Prompt (Using pacman): sudo pacman -S $Package_Name$
+
+# Basic Packages:
+* linux, linux-firmware, base-devel
+
+# Important Packages:
+* networkmanager
+
+* ufw
+* vim
+* git
+* jdk-openjdk
+
+* rustup
+  * sudo pacman -S rustup
+  * rustup default stable
+
+* vlc, mpv, feh, cmus
+* yt-dlp, aria2, ffmpeg
+
+
+# How to set Traditional Chinese input method
+1. Install Necessary Packages:
+  * fcitx5-im, fcitx5-chewing, fcitx5-qt, fcitx5-gtk, fcitx5-chinese-addons
+2. Set Environmental Variables:
+  2-1. Edit the environment variables:
+    * sudo vim /etc/environment
+  2-2. Add the following environment variables:
+    * GTK_IM_MODULE=fcitx
+    * QT_IM_MODULE=fcitx
+    * XMODIFIERS=@im=fcitx
+    * SDL_IM_MODULE=fcitx
+    * GLFW_IM_MODULE=fcitx
+3. Set Autostart
+  3-1. (If the autostart directory does not exist):
+    * mkdir -p ~/.config/autostart
+  3-2. Input the following command:
+    * cp /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
+4. Input "fcitx5-configtool" and add Chewing to the input method

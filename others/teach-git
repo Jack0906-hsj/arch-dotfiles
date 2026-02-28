@@ -1,0 +1,34 @@
+1. Initial Configuration
+    > git config --global user.name "Jack Hu"
+    > git config --global user.email "..."
+    > git config --global init.defaultBranch main
+
+2. Four Important Blocks
+    1. Working Directory
+    2. Staging Area
+    3. Local Repository
+    4. Remote Repository
+
+3. Common Used Commands
+    > git init
+    > git status
+
+    > git add <file>
+    > git commit -m "text"
+    
+    > git log
+    > git diff
+
+    > git branch <name>
+        > git branch -c <name> # -c for create
+    > git checkout <name>
+    > git merge <name>
+
+    > git remote add origin <URL>
+    > git push -u origin main
+    > git pull
+    > git clone <URL>
+
+4. Useful Packages
+    1. tig
+    2. lazygit
